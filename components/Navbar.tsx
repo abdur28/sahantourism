@@ -1,12 +1,29 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Facebook, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Twitter, Youtube, MapPin, Calendar, Users } from 'lucide-react';
 import CustomButton from './CustomButton';
 import Image from 'next/image';
+
+// Shadcn UI components
+import { Input } from '@/components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
 
 const CustomPhoneIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -72,6 +89,214 @@ const CustomCloseIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// Mock search data
+const searchData = {
+  destinations: [
+    { name: 'Mogadishu', country: 'Somalia', image: '/destinations/mogadishu.jpg' },
+    { name: 'Hargeisa', country: 'Somalia', image: '/destinations/hargeisa.jpg' },
+    { name: 'Berbera', country: 'Somalia', image: '/destinations/berbera.jpg' },
+    { name: 'Kismayo', country: 'Somalia', image: '/destinations/kismayo.jpg' },
+  ],
+  packages: [
+    { name: 'Somali Coast Adventure', duration: '7 Days', price: '$899' },
+    { name: 'Historical Somalia Tour', duration: '5 Days', price: '$649' },
+    { name: 'Cultural Experience Package', duration: '10 Days', price: '$1299' },
+  ],
+  quickLinks: [
+    { name: 'About Us', href: '#about' },
+    { name: 'Contact', href: '#contact' },
+    { name: 'Gallery', href: '#gallery' },
+  ]
+};
+
+const SearchComponent = ({ isScrolled, isMobile = false }: { isScrolled: boolean; isMobile?: boolean }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const filteredDestinations = searchData.destinations.filter(dest =>
+    dest.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    dest.country.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredPackages = searchData.packages.filter(pkg =>
+    pkg.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredQuickLinks = searchData.quickLinks.filter(link =>
+    link.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const hasResults = filteredDestinations.length > 0 || filteredPackages.length > 0 || filteredQuickLinks.length > 0;
+
+  if (isMobile) {
+    return (
+      <div className="px-6 py-4 border-b border-slate-200">
+        <div className="relative">
+          <Input
+            type="text"
+            placeholder="Search destinations, packages..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-12 pr-4 py-3 text-base border-2 border-slate-200 focus:border-blue-500 rounded-xl"
+          />
+          <CustomSearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+        </div>
+        
+        {/* Mobile Search Results */}
+        {searchQuery && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-3 bg-white rounded-xl border border-slate-200 shadow-lg max-h-64 overflow-y-auto"
+          >
+            {!hasResults ? (
+              <div className="p-4 text-center text-slate-500">
+                No results found for "{searchQuery}"
+              </div>
+            ) : (
+              <div className="py-2">
+                {filteredDestinations.length > 0 && (
+                  <div className="px-3 py-2">
+                    <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Destinations</h4>
+                    {filteredDestinations.map((dest, index) => (
+                      <Link key={index} href="#" className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg">
+                        <MapPin className="w-4 h-4 text-blue-500" />
+                        <div>
+                          <p className="font-medium text-slate-800">{dest.name}</p>
+                          <p className="text-xs text-slate-500">{dest.country}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+                
+                {filteredPackages.length > 0 && (
+                  <div className="px-3 py-2 border-t border-slate-100">
+                    <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Packages</h4>
+                    {filteredPackages.map((pkg, index) => (
+                      <Link key={index} href="#" className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg">
+                        <Calendar className="w-4 h-4 text-green-500" />
+                        <div className="flex-1">
+                          <p className="font-medium text-slate-800">{pkg.name}</p>
+                          <div className="flex items-center gap-2 text-xs text-slate-500">
+                            <span>{pkg.duration}</span>
+                            <span>•</span>
+                            <span className="font-semibold text-green-600">{pkg.price}</span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </motion.div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <DropdownMenu open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+      <DropdownMenuTrigger asChild>
+        <motion.button 
+          className={`hover:scale-110 transition-all duration-300 p-3 rounded-xl group ${
+            isScrolled ? 'text-slate-700 lg:text-white hover:bg-slate-100 lg:hover:bg-white/20' : 'text-white hover:bg-white/20'
+          }`}
+          whileHover={{ rotate: 15 }}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Search"
+        >
+          <CustomSearchIcon className="w-5 h-5" />
+        </motion.button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent 
+        align="end" 
+        className="w-96 p-0 border-0 shadow-2xl bg-white/95 backdrop-blur-xl"
+        sideOffset={5}
+      >
+        <Command className="border-0">
+          <CommandInput 
+            placeholder="Search destinations, packages..." 
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+            className="border-0 border-b border-slate-200 rounded-none px-4 py-3"
+          />
+          <CommandList className="max-h-80">
+            <CommandEmpty>No results found.</CommandEmpty>
+            
+            {filteredDestinations.length > 0 && (
+              <CommandGroup heading="Destinations" className="px-2 py-3">
+                {filteredDestinations.map((dest, index) => (
+                  <CommandItem 
+                    key={index} 
+                    className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg cursor-pointer"
+                    onSelect={() => setIsSearchOpen(false)}
+                  >
+                    <MapPin className="w-4 h-4 text-blue-500" />
+                    <div>
+                      <p className="font-medium text-slate-800">{dest.name}</p>
+                      <p className="text-sm text-slate-500">{dest.country}</p>
+                    </div>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            )}
+            
+            {filteredPackages.length > 0 && (
+              <>
+                <DropdownMenuSeparator />
+                <CommandGroup heading="Tour Packages" className="px-2 py-3">
+                  {filteredPackages.map((pkg, index) => (
+                    <CommandItem 
+                      key={index} 
+                      className="flex items-center gap-3 p-3 hover:bg-green-50 rounded-lg cursor-pointer"
+                      onSelect={() => setIsSearchOpen(false)}
+                    >
+                      <Calendar className="w-4 h-4 text-green-500" />
+                      <div className="flex-1">
+                        <p className="font-medium text-slate-800">{pkg.name}</p>
+                        <div className="flex items-center gap-2 text-sm text-slate-500">
+                          <Users className="w-3 h-3" />
+                          <span>{pkg.duration}</span>
+                          <span>•</span>
+                          <span className="font-semibold text-green-600">{pkg.price}</span>
+                        </div>
+                      </div>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </>
+            )}
+            
+            {filteredQuickLinks.length > 0 && (
+              <>
+                <DropdownMenuSeparator />
+                <CommandGroup heading="Quick Links" className="px-2 py-3">
+                  {filteredQuickLinks.map((link, index) => (
+                    <CommandItem 
+                      key={index}
+                      onSelect={() => setIsSearchOpen(false)}
+                    >
+                      <Link 
+                        href={link.href} 
+                        className="flex items-center gap-3 p-3 w-full hover:bg-purple-50 rounded-lg"
+                      >
+                        <div className="w-2 h-2 bg-purple-500 rounded-full" />
+                        <p className="font-medium text-slate-800">{link.name}</p>
+                      </Link>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </>
+            )}
+          </CommandList>
+        </Command>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -98,6 +323,12 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+
+    // check on page load
+    if (window.scrollY >= 200) {
+      setIsScrolled(true);
+    }
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -153,12 +384,12 @@ const Navbar = () => {
               <div className="justify-self-center">
                 <Link href="/" className="block group">
                   <motion.div 
-                    className="flex flex-row items-center gap-2"
+                    className="flex flex-row justify-center items-center gap-2"
                     whileHover={{ scale: 1.05, rotate: 1 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Image src="/logo.png" alt="Logo" width={100} height={100} className='w-18 h-18 object-contain' />
-                    <div className='md:flex flex-col hidden'>
+                    <div className='lg:flex flex-col hidden'>
                         <span className="text-2xl font-bold font-montserrat text-white">
                         SAHAN
                         </span>
@@ -171,16 +402,10 @@ const Navbar = () => {
 
               {/* Right: Search & Menu Buttons */}
               <div className="justify-self-end flex items-center gap-3">
-                <motion.button 
-                  className={`hover:scale-110 transition-all duration-300 p-3 rounded-xl group hidden md:block ${
-                    isScrolled ? 'text-slate-700 lg:text-white hover:bg-slate-100 lg:hover:bg-white/20' : 'text-white hover:bg-white/20'
-                  }`}
-                  whileHover={{ rotate: 15 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label="Search"
-                >
-                  <CustomSearchIcon className="w-5 h-5" />
-                </motion.button>
+                {/* Desktop Search */}
+                <div className="hidden lg:block">
+                  <SearchComponent isScrolled={isScrolled} />
+                </div>
                 
                 <motion.button 
                   className={`hover:scale-110 transition-all duration-300 p-3 rounded-xl lg:hidden ${
@@ -201,7 +426,7 @@ const Navbar = () => {
         <motion.div 
           className={`w-full border-b border-white/10 transition-all duration-300 ${
             isScrolled 
-              ? 'hidden lg:block lg:bg-white lg:shadow-xl lg:text-slate-800 lg:-mt-20' 
+              ? 'hidden lg:block lg:bg-white lg:shadow-xl lg:text-slate-800 lg:-mt-27' 
               : 'block bg-transparent text-white'
           }`}
           initial={false}
@@ -323,6 +548,9 @@ const Navbar = () => {
                   <CustomCloseIcon className="w-6 h-6" />
                 </motion.button>
               </div>
+
+              {/* Mobile Search */}
+              <SearchComponent isScrolled={isScrolled} isMobile={true} />
 
               {/* Mobile Menu Links */}
               <nav className="py-6">

@@ -25,7 +25,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Journey to explore world
+            Welcome to Sahan Tourism
           </motion.h1>
 
           <motion.p 
@@ -34,8 +34,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Ac mi duis mollis. Sapiente? Scelerisque quae, penatibus? Suscipit class corporis nostra rem quos
-            voluptatibus habitant? Fames, vivamus minim nemo enim, gravida lobortis quasi, eum.
+            At Sahan Tourism, we embody the spirit of Sahan—the Somali term for nomadic scouts or pathfinders who navigate the safest and most resourceful routes for their communities.
           </motion.p>
 
           <motion.div 
