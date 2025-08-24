@@ -297,7 +297,7 @@ const SearchComponent = ({ isScrolled, isMobile = false }: { isScrolled: boolean
   );
 };
 
-const Navbar = () => {
+const HomeNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -586,4 +586,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default HomeNavbar;

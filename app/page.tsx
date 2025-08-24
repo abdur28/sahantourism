@@ -1,8 +1,8 @@
-import Hero from '@/components/Home/Hero';
+import Hero from '@/components/home/Hero';
 import SearchBox from '@/components/SearchBox';
-import Info from '@/components/Home/Info';
-import PopularDestinations from '@/components/Home/PopularDestinations';
-import PopularPackages from '@/components/Home/PopularPackages';
+import Info from '@/components/home/Info';
+import PopularDestinations from '@/components/home/PopularDestinations';
+import PopularPackages from '@/components/home/PopularPackages';
 
 export default function Home() {
   return (
