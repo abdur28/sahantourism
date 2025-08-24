@@ -426,7 +426,7 @@ const HomeNavbar = () => {
         <motion.div 
           className={`w-full border-b border-white/10 transition-all duration-300 ${
             isScrolled 
-              ? 'hidden lg:block lg:bg-white lg:shadow-xl lg:text-slate-800 lg:-mt-27' 
+              ? 'hidden lg:block lg:bg-white lg:shadow-xl lg:text-slate-800 lg:-mt-22' 
               : 'block bg-transparent text-white'
           }`}
           initial={false}
