@@ -139,7 +139,7 @@ const SearchComponent = ({ isMobile = false }: { isMobile?: boolean }) => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-12 pr-4 py-3 text-base border-2 border-slate-200 focus:border-blue-500 rounded-xl"
           />
-          <CustomSearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <CustomSearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-3 h-3 text-slate-400" />
         </div>
         
         {/* Mobile Search Results */}
@@ -151,7 +151,7 @@ const SearchComponent = ({ isMobile = false }: { isMobile?: boolean }) => {
           >
             {!hasResults ? (
               <div className="p-4 text-center text-slate-500">
-                No results found for "{searchQuery}"
+                {`No results found for "${searchQuery}"`}
               </div>
             ) : (
               <div className="py-2">
@@ -385,12 +385,12 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05, rotate: 1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Image src="/logo.png" alt="Logo" width={100} height={100} className='w-14 h-14 object-contain' />
+                  <Image src="/logo.png" alt="Logo" width={100} height={100} className='w-12 h-12 object-contain' />
                   <div className='flex flex-col'>
-                    <span className="text-xl font-bold font-montserrat text-gray-900">
+                    <span className="text-base font-bold font-montserrat text-gray-900">
                       SAHAN
                     </span>
-                    <span className="text-gray-700 text-sm font-montserrat">Tourism Somalia</span>
+                    <span className="text-gray-700 text-xs font-montserrat">Tourism Somalia</span>
                   </div>
                 </motion.div>
               </Link>
@@ -402,7 +402,7 @@ const Navbar = () => {
                     <li key={index}>
                       <Link
                         href={link.href}
-                        className={`px-4 py-2 text-sm font-bold uppercase transition-all duration-300 hover:scale-105 relative group rounded-lg ${
+                        className={`px-4 py-2 text-xs font-bold uppercase transition-all duration-300 hover:scale-105 relative group rounded-lg ${
                           isActive(link.href) 
                             ? 'text-blue-600 bg-blue-50' 
                             : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'

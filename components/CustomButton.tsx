@@ -15,7 +15,7 @@ interface CustomButtonProps {
 const CustomButton = ({ 
   children, 
   variant = 'primary', 
-  size = 'md', 
+  size = 'sm', 
   onClick, 
   className = '', 
   disabled = false 

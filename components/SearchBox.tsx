@@ -57,24 +57,24 @@ export default function SearchBox() {
   };
 
   return (
-    <div className="bg-gray-50 pb-12 lg:-mt-28 md:-mt-48 -mt-64">
+    <div className="bg-gray-50 pb-12 lg:-mt-32 md:-mt-48 -mt-64">
       <div className="container mx-auto px-4 relative z-20">
         <div className="bg-white rounded-3xl p-8 shadow-xl max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 items-end">
             
             {/* Destination Select */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+              <label className="text-xs font-medium text-gray-700 flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-blue-600" />
                 Destination
               </label>
               <Select value={destination} onValueChange={setDestination}>
-                <SelectTrigger className="h-12 rounded-full border-gray-300 focus:border-blue-500">
-                  <SelectValue placeholder="Select destination" />
+                <SelectTrigger className="py-6 h-12 rounded-full border-gray-300 focus:border-blue-500">
+                  <SelectValue placeholder="Select destination" className="text-xs"/>
                 </SelectTrigger>
                 <SelectContent>
                   {destinations.map((dest) => (
-                    <SelectItem key={dest.value} value={dest.value}>
+                    <SelectItem key={dest.value} value={dest.value} className="text-xs">
                       {dest.label}
                     </SelectItem>
                   ))}
@@ -84,7 +84,7 @@ export default function SearchBox() {
 
             {/* Duration Range Slider */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+              <label className="text-xs font-medium text-gray-700 flex items-center gap-2">
                 <Clock className="h-4 w-4 text-blue-600" />
                 Duration
               </label>
@@ -106,7 +106,7 @@ export default function SearchBox() {
 
             {/* Check-in Date */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+              <label className="text-xs font-medium text-gray-700 flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-blue-600" />
                 Check-in Date
               </label>
@@ -115,7 +115,7 @@ export default function SearchBox() {
                   <Button
                     variant="outline"
                     className={cn(
-                      "h-12 w-full justify-start text-left font-normal rounded-full border-gray-300 hover:border-blue-500",
+                      "h-12 w-full justify-start text-left text-sm font-normal rounded-full border-gray-300 hover:border-blue-500",
                       !checkinDate && "text-muted-foreground"
                     )}
                   >
@@ -137,7 +137,7 @@ export default function SearchBox() {
 
             {/* Number of Persons */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+              <label className="text-xs font-medium text-gray-700 flex items-center gap-2">
                 <Users className="h-4 w-4 text-blue-600" />
                 Persons
               </label>
@@ -145,19 +145,19 @@ export default function SearchBox() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-8 w-8 rounded-full p-0 hover:bg-blue-50"
+                  className="h-7 w-7 rounded-full p-0 hover:bg-blue-50"
                   onClick={decrementPersons}
                   disabled={persons <= 1}
                 >
                   −
                 </Button>
-                <div className="flex-1 text-center font-medium">
+                <div className="flex-1 text-sm text-center font-medium">
                   {persons} {persons === 1 ? 'Person' : 'Persons'}
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-8 w-8 rounded-full p-0 hover:bg-blue-50"
+                  className="h-7 w-7 rounded-full p-0 hover:bg-blue-50"
                   onClick={incrementPersons}
                   disabled={persons >= 20}
                 >
@@ -170,7 +170,7 @@ export default function SearchBox() {
             <div className="xl:col-span-1 lg:col-span-4 md:col-span-2">
               <Button
                 onClick={handleSearch}
-                className="w-full h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-200"
+                className="w-full h-12 rounded-full text-sms bg-blue-600 hover:bg-blue-700 text-white font-semibold  shadow-lg hover:shadow-xl transition-all duration-200"
               >
                 <Search className="mr-2 h-5 w-5" />
                 Search Tours
@@ -180,8 +180,8 @@ export default function SearchBox() {
           </div>
 
           {/* Selected Values Display */}
-          <div className="mt-6 pt-6 border-t border-gray-100">
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+          <div className="mt-3 pt-3 border-t border-gray-100">
+            <div className="flex flex-wrap gap-4 text-xs text-gray-600">
               {destination && (
                 <span className="bg-blue-50 px-3 py-1 rounded-full">
                   📍 {destinations.find(d => d.value === destination)?.label}

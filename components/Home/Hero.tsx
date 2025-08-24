@@ -12,15 +12,15 @@ const Hero = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80')`
       }}
     >
-      <div className="container mx-auto px-4 -mt-72 md:-mt-28 lg:-mt-10">
+      <div className="container mx-auto px-4 -mt-80 md:-mt-40 lg:-mt-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-3xl mx-auto"
         >
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase font-montserrat"
+            className="text-3xl lg:text-4xl font-bold text-white mb-6 uppercase font-montserrat"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -29,7 +29,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p 
-            className="text-white text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-white text-base mb-10 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -44,7 +44,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <motion.button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium uppercase transition-all duration-300 min-w-[160px]"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 text-sm rounded-full font-medium uppercase transition-all duration-300 min-w-[140px]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -52,7 +52,7 @@ const Hero = () => {
             </motion.button>
 
             <motion.button
-              className="border-2 border-white text-white hover:bg-white hover:text-slate-800 px-8 py-3 rounded-full font-medium uppercase transition-all duration-300 min-w-[160px]"
+              className="border-1 border-white text-white hover:bg-white hover:text-slate-800 px-5 py-2 text-sm  rounded-full font-medium uppercase transition-all duration-300 min-w-[140px]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

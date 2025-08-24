@@ -61,9 +61,9 @@ const PackageCard = ({ pkg, index }: { pkg: any; index: number }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
     >
-      <div className="flex flex-col md:flex-row md:h-96">
+      <div className="flex flex-col md:flex-row md:h-80">
         {/* Image Section - Left */}
-        <div className="relative md:w-[35%] h-48 md:h-full overflow-hidden">
+        <div className="relative md:w-[35%] h-44 md:h-full overflow-hidden">
           <img
             src={pkg.image}
             alt={pkg.title}
@@ -72,7 +72,7 @@ const PackageCard = ({ pkg, index }: { pkg: any; index: number }) => {
           
           {/* Discount Badge */}
           {pkg.discount && (
-            <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm lg:text-base font-bold">
+            <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-sm lg:text-sm font-bold">
               {pkg.discount}% Off
             </div>
           )}
@@ -82,18 +82,18 @@ const PackageCard = ({ pkg, index }: { pkg: any; index: number }) => {
         <div className=" md:w-[35%] h-44 md:h-full p-4 md:p-6 flex flex-col justify-between">
           {/* Title */}
           <div>
-            <h3 className="font-bold text-sm md:text-lg lg:text-xl text-gray-800 mb-2 md:mb-3 leading-tight">
+            <h3 className="font-bold text-sm md:text-base lg:text-base text-gray-800 mb-2 md:mb-3 leading-tight">
               {pkg.title}
             </h3>
 
             {/* Description */}
-            <p className="text-gray-600 text-xs md:text-sm lg:text-base line-clamp-2 md:line-clamp-3 mb-3 md:mb-4">
+            <p className="text-gray-600 text-xs md:text-sm lg:text-sm line-clamp-2 md:line-clamp-3 mb-3 md:mb-4">
               {pkg.description}
             </p>
           </div>
 
           {/* Bottom Info */}
-          <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600">
+          <div className="flex items-center gap-3 md:gap-4 text-xs  text-gray-600">
             <div className="flex items-center gap-1">
               <Clock className="w-3 h-3 md:w-4 md:h-4 text-blue-500" />
               <span>{pkg.duration}</span>
@@ -131,14 +131,14 @@ const PackageCard = ({ pkg, index }: { pkg: any; index: number }) => {
           {/* Price */}
           <div className="text-center">
             {pkg.originalPrice && (
-              <div className="text-xs md:text-sm line-through opacity-75 mb-1">
+              <div className="text-xs  line-through opacity-75 mb-1">
                 ${pkg.originalPrice.toLocaleString()}
               </div>
             )}
             <div className="text-xl md:text-3xl font-bold mb-1">
               ${pkg.currentPrice.toLocaleString()}
             </div>
-            <div className="text-xs md:text-sm opacity-90 mb-4">/ per person</div>
+            <div className="text-xs  opacity-90 mb-4">/ per person</div>
 
             {/* Book Now Button */}
             <Button
@@ -164,7 +164,7 @@ export default function PopularPackages() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-blue-600 font-semibold text-sm uppercase tracking-wider mb-2"
+            className="text-blue-600 font-semibold text-xs uppercase tracking-wider mb-2"
           >
             Popular Packages
           </motion.p>
@@ -172,7 +172,7 @@ export default function PopularPackages() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
+            className="text-2xl md:text-4xl font-bold text-gray-800 mb-6"
           >
             Checkout Our Packages
           </motion.h2>
@@ -180,7 +180,7 @@ export default function PopularPackages() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed"
+            className="text-gray-600 max-w-2xl mx-auto text-base leading-relaxed"
           >
             Explore Somalia and the Horn of Africa with expertly crafted tours, featuring top destinations, 
             efficient routes, and affordable arrangements for a seamless travel experience.

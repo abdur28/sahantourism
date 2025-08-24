@@ -30,7 +30,7 @@ const features = [
 
 export default function Info() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="pb-20 pt-10 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           
@@ -40,7 +40,7 @@ export default function Info() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto"
+              className="text-base text-gray-700 leading-relaxed max-w-3xl mx-auto"
             >
               As a dedicated tour operator, we provide customized travel experiences across Somalia and the Horn of Africa, ensuring seamless journeys. Our packages highlight top destinations, optimize routes, and offer affordable arrangements—always prioritizing reasonable pricing to make exploration accessible for all.
             </motion.p>
@@ -61,16 +61,16 @@ export default function Info() {
                 >
                   {/* Icon */}
                   <div className={`inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 ${feature.bgColor} rounded-2xl mb-6 group-hover:shadow-lg transition-shadow duration-300`}>
-                    <IconComponent className={`w-8 h-8 md:w-10 md:h-10 ${feature.iconColor}`} />
+                    <IconComponent className={`w-6 h-6 md:w-8 md:h-8 ${feature.iconColor}`} />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                  <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                     {feature.description}
                   </p>
                 </motion.div>

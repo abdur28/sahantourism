@@ -23,7 +23,7 @@ const DestinationCard = ({
   return (
     <motion.button
       onClick={handleClick}
-      className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
+      className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[32rem] md:w-88 dark:bg-neutral-900 hover:scale-105 transition-transform duration-300"
       whileHover={{ y: -5 }}
       whileTap={{ scale: 0.98 }}
     >
@@ -33,16 +33,16 @@ const DestinationCard = ({
       {/* Content */}
       <div className="relative z-40 p-6 md:p-8 h-full flex flex-col justify-between">
         <div>
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-1 mb-2">
             <MapPin className="w-4 h-4 text-white/80" />
-            <p className="text-left font-sans text-sm font-medium text-white/80 md:text-base">
+            <p className="text-left font-sans text-xs font-medium text-white/80 md:text-sm">
               {destination.country}
             </p>
           </div>
-          <h3 className="text-left font-sans text-xl font-bold text-white md:text-3xl mb-2">
+          <h3 className="text-left font-sans text-base font-bold text-white md:text-3xl mb-2">
             {destination.title}
           </h3>
-          <p className="text-left text-sm text-white/90 md:text-base line-clamp-3">
+          <p className="text-left text-xs text-white/90 md:text-sm line-clamp-3">
             {destination.description}
           </p>
         </div>
@@ -122,14 +122,14 @@ export default function PopularDestinations() {
   return (
     <div className="w-full h-full py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <p className="text-blue-600 font-semibold text-sm uppercase tracking-wider mb-2">
+        <div className="text-center mb-2">
+          <p className="text-blue-600 font-semibold text-xs uppercase tracking-wider mb-2">
             Uncover Places
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 dark:text-neutral-200 font-sans mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-neutral-200 font-sans mb-4">
             Popular Destinations
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-2xl mx-auto text-base">
             {`Discover Somalia’s rich history, South Sudan’s culture, Djibouti’s landscapes, Eritrea’s charm, and Kenya’s wildlife. Adventure awaits!`}
           </p>
         </div>

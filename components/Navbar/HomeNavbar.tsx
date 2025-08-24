@@ -137,9 +137,9 @@ const SearchComponent = ({ isScrolled, isMobile = false }: { isScrolled: boolean
             placeholder="Search destinations, packages..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-12 pr-4 py-3 text-base border-2 border-slate-200 focus:border-blue-500 rounded-xl"
+            className="pl-12 pr-4 py-3 text-sm border-2 border-slate-200 focus:border-blue-500 rounded-xl"
           />
-          <CustomSearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <CustomSearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
         </div>
         
         {/* Mobile Search Results */}
@@ -151,7 +151,7 @@ const SearchComponent = ({ isScrolled, isMobile = false }: { isScrolled: boolean
           >
             {!hasResults ? (
               <div className="p-4 text-center text-slate-500">
-                No results found for "{searchQuery}"
+                {`No results found for "${searchQuery}"`}
               </div>
             ) : (
               <div className="py-2">
@@ -162,7 +162,7 @@ const SearchComponent = ({ isScrolled, isMobile = false }: { isScrolled: boolean
                       <Link key={index} href="#" className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg">
                         <MapPin className="w-4 h-4 text-blue-500" />
                         <div>
-                          <p className="font-medium text-slate-800">{dest.name}</p>
+                          <p className="font-medium text-xs text-slate-800">{dest.name}</p>
                           <p className="text-xs text-slate-500">{dest.country}</p>
                         </div>
                       </Link>
@@ -177,7 +177,7 @@ const SearchComponent = ({ isScrolled, isMobile = false }: { isScrolled: boolean
                       <Link key={index} href="#" className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg">
                         <Calendar className="w-4 h-4 text-green-500" />
                         <div className="flex-1">
-                          <p className="font-medium text-slate-800">{pkg.name}</p>
+                          <p className="font-medium text-xs text-slate-800">{pkg.name}</p>
                           <div className="flex items-center gap-2 text-xs text-slate-500">
                             <span>{pkg.duration}</span>
                             <span>•</span>
@@ -302,13 +302,13 @@ const HomeNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    { name: 'home', href: '#home' },
-    { name: 'about us', href: '#about' },
-    { name: 'destination', href: '#destination' },
-    { name: 'packages', href: '#packages' },
-    { name: 'gallery', href: '#gallery' },
-    { name: 'blogs', href: '#blogs' },
-    { name: 'contact us', href: '#contact' },
+    { name: 'home', href: '/admin' },
+    { name: 'about us', href: '/admin' },
+    { name: 'destination', href: '/admin' },
+    { name: 'packages', href: '/admin' },
+    { name: 'gallery', href: '/admin' },
+    { name: 'blogs', href: '/admin' },
+    { name: 'contact us', href: '/admin' },
   ];
 
   const socialLinks = [
@@ -368,14 +368,14 @@ const HomeNavbar = () => {
                     transition={{ duration: 0.5 }}
                   >
                     <CustomPhoneIcon 
-                    className="w-5 h-5 text-white font-bold uppercase transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed " 
+                    className="w-4 h-4 text-white font-bold uppercase transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed " 
                     />
                   </motion.div>
                   <div className="hidden lg:block">
-                    <p className={`text-sm font-medium ${
+                    <p className={`text-xs font-medium ${
                       isScrolled ? 'text-slate-600 lg:text-white/90' : 'text-white/90'
                     }`}>Need Help?</p>
-                    <p className="text-sm font-bold">+01 (123) 4567 90</p>
+                    <p className="text-xs font-bold">+01 (123) 4567 90</p>
                   </div>
                 </Link>
               </div>
@@ -388,12 +388,12 @@ const HomeNavbar = () => {
                     whileHover={{ scale: 1.05, rotate: 1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Image src="/logo.png" alt="Logo" width={100} height={100} className='w-18 h-18 object-contain' />
+                    <Image src="/logo.png" alt="Logo" width={100} height={100} className='w-12 h-12 object-contain' />
                     <div className='lg:flex flex-col hidden'>
-                        <span className="text-2xl font-bold font-montserrat text-white">
+                        <span className="text-base font-bold font-montserrat text-white">
                         SAHAN
                         </span>
-                        <span className="text-white/90 font-montserrat">Tourism Somalia</span>
+                        <span className="text-white/90 text-xs font-montserrat">Tourism Somalia</span>
                     </div>
 
                   </motion.div>
@@ -415,7 +415,7 @@ const HomeNavbar = () => {
                   whileTap={{ scale: 0.9 }}
                   aria-label="Open Menu"
                 >
-                  <CustomMenuIcon className="w-6 h-6" isOpen={isMenuOpen} />
+                  <CustomMenuIcon className="w-5 h-5" isOpen={isMenuOpen} />
                 </motion.button>
               </div>
             </div>
@@ -447,7 +447,7 @@ const HomeNavbar = () => {
                           : 'border-white/30 text-white hover:bg-white/20'
                       }`}
                     >
-                      <IconComponent className="w-4 h-4" />
+                      <IconComponent className="w-3 h-3" />
                     </Link>
                   );
                 })}
@@ -459,7 +459,7 @@ const HomeNavbar = () => {
                     <li key={index}>
                       <Link
                         href={link.href}
-                        className={`px-5 py-5 text-sm font-bold uppercase transition-all duration-300 hover:scale-105 relative group ${
+                        className={`px-5 py-5 text-xs font-bold uppercase transition-all duration-300 hover:scale-105 relative group ${
                           isScrolled ? 'text-slate-700 hover:text-blue-600' : 'text-white hover:text-blue-300'
                         }`}
                       >
